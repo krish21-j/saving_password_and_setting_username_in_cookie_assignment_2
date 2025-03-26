@@ -47,7 +47,13 @@ async function main() {
 }
 
 async function test() {
-  const pin = pinInput.value.trim().padStart(3, '0');
+  const pin = pinInput.value.trim();
+  if (!pin) {
+    resultView.innerHTML = '⚠️ 3-digit PIN is required';
+    resultView.classList.remove('hidden');
+    return;
+  }
+
   if (pin.length !== 3 || isNaN(pin)) {
     resultView.innerHTML = '💡 Enter a valid 3-digit number';
     resultView.classList.remove('hidden');
